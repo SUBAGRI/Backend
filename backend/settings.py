@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-kkcb6x^!q@n2*075f=d=fc9ocu#3fyxw+8_)i8la5or$5#n8la
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOST = ["backend-g3uc.onrender.com", "127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["backend-g3uc.onrender.com", "127.0.0.1", "localhost"]
 
 CORS_HOST_ALLOW_ALL=True
 # Permitir todos los métodos HTTP (opcional)
