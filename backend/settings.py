@@ -25,10 +25,10 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY', default='clave_por_defecto_no_segura')
+SECRET_KEY = 'django-insecure-kkcb6x^!q@n2*075f=d=fc9ocu#3fyxw+8_)i8la5or$5#n8la'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool('DEBUG', default=False)
+DEBUG = True
 
 CORS_HOST_ALLOW_ALL=True
 # Permitir todos los métodos HTTP (opcional)
@@ -111,7 +111,10 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 
 DATABASES = {
-    'default': env.db(),
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',  # Usando SQLite
+        'NAME': BASE_DIR / 'db.sqlite3',  # La base de datos se guarda en el directorio BASE_DIR
+    }
 }
 
 
