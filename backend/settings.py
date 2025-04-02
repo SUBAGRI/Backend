@@ -113,7 +113,10 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 
 DATABASES = {
-    'default': env.db(),
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',  # Usando SQLite
+        'NAME': BASE_DIR / 'db.sqlite3',  # La base de datos se guarda en el directorio BASE_DIR
+    }
 }
 
 
