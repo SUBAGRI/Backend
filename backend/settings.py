@@ -30,6 +30,8 @@ SECRET_KEY = 'django-insecure-kkcb6x^!q@n2*075f=d=fc9ocu#3fyxw+8_)i8la5or$5#n8la
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+ALLOWED_HOST = ["backend-g3uc.onrender.com", "127.0.0.1", "localhost"]
+
 CORS_HOST_ALLOW_ALL=True
 # Permitir todos los métodos HTTP (opcional)
 CORS_ALLOW_METHODS = [
@@ -111,10 +113,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',  # Usando SQLite
-        'NAME': BASE_DIR / 'db.sqlite3',  # La base de datos se guarda en el directorio BASE_DIR
-    }
+    'default': env.db(),
 }
 
 
