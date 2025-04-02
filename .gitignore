@@ -1,2 +1,6 @@
+*.pyc
+__pycache__/
 .env
-d.sqlite3
+*.env
+db.sqlite3
+node_modules/
