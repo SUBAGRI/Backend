@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from api.views import CreateUserView, UserList, delete_user, UserDetail
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -12,5 +13,7 @@ urlpatterns = [
     path("api/", include("api.urls")),
     path("api/users/", UserList.as_view(), name="users" ),
     path("api/deleteuser/<int:pk>/", delete_user, name="user-detail"),
-    path("api/user/<int:pk>/", UserDetail.as_view(), name="user-detail")
+    path("api/user/<int:pk>/", UserDetail.as_view(), name="user-detail"),
+
+    path("", TemplateView.as_view(template_name="index.html"),name="home")
 ]
