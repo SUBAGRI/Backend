@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import Order, FacturaRec, Cliente
+from .models import Order, FacturaRec, Cliente, CodigoProducto
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -26,4 +26,9 @@ class FacturaRecSerializer(serializers.ModelSerializer):
 class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cliente
+        fields = "__all__"
+
+class CodigoProductoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CodigoProducto
         fields = "__all__"

@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from .models import Order, FacturaRec, Cliente
-from .serializers import OrderSerializer, UserSerializer, FacturaRecSerializer, ClienteSerializer
+from .models import Order, FacturaRec, Cliente, CodigoProducto
+from .serializers import OrderSerializer, UserSerializer, FacturaRecSerializer, ClienteSerializer, CodigoProductoSerializer
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
@@ -81,4 +81,20 @@ class ClienteListCreate(generics.ListCreateAPIView):
 class ClienteDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Cliente.objects.all()
     serializer_class = ClienteSerializer
+    permission_classes = [AllowAny]
+
+#CodigoProducto Views
+class CodigoProductoCreate(generics.ListCreateAPIView):
+    serializer_class = CodigoProductoSerializer
+    permission_classes = [AllowAny]
+
+    def get_queryset(self):
+        return CodigoProducto.objects.all()
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+class CodigoProductoDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = CodigoProducto.objects.all()
+    serializer_class = CodigoProductoSerializer
     permission_classes = [AllowAny]

@@ -14,6 +14,7 @@ class Order(models.Model):
     IRPf=models.FloatField(default=0.0, blank=True)
     IRPfimp=models.FloatField(default=0.0, blank=True)
     total = models.FloatField(default=0.0, blank=True)
+    producto = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
         return str(self.cliente + " " + self.numfac)
@@ -30,6 +31,7 @@ class FacturaRec(models.Model):
     IRPf=models.FloatField(default=0.0, blank=True)
     IRPfimp=models.FloatField(default=0.0, blank=True)
     total = models.FloatField(default=0.0, blank=True)
+    producto = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
         return str(self.proveedor + " " + self.numfac)
@@ -44,3 +46,17 @@ class Cliente(models.Model):
 
     def __str__(self):
         return str(self.nombre + " " + self.cif)
+    
+class CodigoProducto(models.Model):
+    idCodigo = models.AutoField(primary_key=True)
+    codigo = models.CharField(max_length=100, unique=True)
+    nombre = models.CharField(max_length=100, blank=True)
+    descripcion = models.TextField(blank=True, null=True)
+    tipo = models.CharField(
+        max_length=10,
+        blank=True
+    )
+    activo = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f"{self.codigo} - {self.nombre}"
