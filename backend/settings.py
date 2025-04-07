@@ -11,15 +11,14 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 from pathlib import Path
 from datetime import timedelta
-from dotenv import load_dotenv
+from urllib.parse import urlparse
 import os
-import environ
+from dotenv import load_dotenv
 
-env = environ.Env()
-# Leer el archivo .env
-environ.Env.read_env()
+load_dotenv() 
 
-load_dotenv()
+print(os.getenv('DATABASE_URL')) 
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -112,14 +111,18 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 
+tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',  # Usando SQLite
-        'NAME': BASE_DIR / 'db.sqlite3',  # La base de datos se guarda en el directorio BASE_DIR
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': tmpPostgres.path.replace('/', ''),
+        'USER': tmpPostgres.username,
+        'PASSWORD': tmpPostgres.password,
+        'HOST': tmpPostgres.hostname,
+        'PORT': 5432,
     }
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
