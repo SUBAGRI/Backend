@@ -4,7 +4,7 @@ from django.utils.timezone import now
 # Order class que es facturas
 class Order(models.Model):
     idOrder = models.AutoField(primary_key=True)
-    createdAt = models.DateTimeField(blank=True)  # Valor predeterminado agregado
+    createdAt = models.DateTimeField(default=now, blank=True)  # Valor predeterminado agregado
     fecha = models.DateField(default=now, blank=True)
     numfac=models.TextField(max_length=500, default="", blank=True)
     cliente=models.TextField(max_length=500, default="", blank=True)
@@ -21,7 +21,7 @@ class Order(models.Model):
 
 class FacturaRec(models.Model):
     idOrder = models.AutoField(primary_key=True)
-    createdAt = models.DateTimeField(blank=True)  # Valor predeterminado agregado
+    createdAt = models.DateTimeField(default=now, blank=True)  # Valor predeterminado agregado
     fecha = models.DateField(blank=True)
     numfac=models.TextField(max_length=500, default="", blank=True)
     proveedor=models.TextField(max_length=500, default="", blank=True)
